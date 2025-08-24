@@ -13,44 +13,54 @@
     <h1>مجانا 💎</h1>
 </center>
     </div>
-    <!-- From Uiverse.io by mi-series --> 
+</body>
+<!-- From Uiverse.io by mi-series -->
 <div class="container">
     <div class="form_area">
         <p class="title">SIGN UP</p>
-        <form >
+        <form id="signupForm">
             <div class="form_group">
                 <label class="sub_title" for="name">Name</label>
-                <input placeholder="Enter your full name" class="form_style" type="text" name="name">
+                <input placeholder="Enter your full name" class="form_style" type="text" id="name" required>
             </div>
             <div class="form_group">
                 <label class="sub_title" for="email">Email</label>
-                <input placeholder="Enter your email" id="email" class="form_style" type="email" name="email">
+                <input placeholder="Enter your email" class="form_style" type="email" id="email" required>
             </div>
             <div class="form_group">
                 <label class="sub_title" for="password">Password</label>
-                <input placeholder="Enter your password" id="password" class="form_style" type="password" name="password">
+                <input placeholder="Enter your password" class="form_style" type="password" id="password" required>
             </div>
             <div>
-                <button class="btn">SIGN UP</button>
-                <p>Have an Account? <a class="link" href="">Login Here!</a></p><a class="link" href="">
-            </a></div><a class="link" href="">
-        
-    </a></form></div><a class="link" href="">
-</a></div>
+                <button class="btn" type="submit">SIGN UP</button>
+                <p>Have an Account? <a class="link" href="">Login Here!</a></p>
+            </div>
+        </form>
+        <div id="response" style="margin-top:10px; color:green;"></div>
+    </div>
+</div>
 
-  
-</body>
-</html>
-<head>
-<style>
+<!-- JavaScript لإرسال البيانات -->
+<script>
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-</style>
-
-
-
-
-</head>
+    fetch('/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('response').innerText = data.message;
+    })
+    .catch(error => console.error('Error:', error));
+});
+</script>
 <head>
     <style>
         h1{
@@ -79,10 +89,26 @@ color: rgb(1, 1, 145);
         }
     </style>
 </head>
-<body>
-    <h1>مرحبا بك في موقعي</h1>
-    <p>هنا نص الموقع</p>
-</body>
 </html>
+<script>
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // منع إعادة تحميل الصفحة
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    fetch('/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('response').innerText = data.message;
+    })
+    .catch(error => console.error('Error:', error));
+});
+</script>
 
 
